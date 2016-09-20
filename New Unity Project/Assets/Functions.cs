@@ -12,7 +12,7 @@ public class Functions : MonoBehaviour {
     //This Function takes the values of each variable and adds them together to get the total number of friut when the game starts
 	void Start () {
         totalFruit = numberOfApples + numberOfOranges + numberOfPears;
-        Debug.Log("I'm starting with " + totalFruit + " fruit");
+        print("I'm starting with " + totalFruit + " fruit");
 	}
     
     //In this Function, the player can press buttons to display in the consol the number of each fruit. 
