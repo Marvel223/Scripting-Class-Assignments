@@ -3,14 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 
-public class CountDownTimer : MonoBehaviour
+public class CountDownTimer : MenuScript
 {
 
-
+    
     public int timeLeft = 300;
     public Text countDownText;
-
-
+    
     void Start ()
     {
         StartCoroutine(LoseTime());
@@ -24,7 +23,9 @@ public class CountDownTimer : MonoBehaviour
         {
             StopCoroutine(LoseTime());
             countDownText.text = "Time: 0";
-            Time.timeScale = 0; 
+            TimeHasEnded();
+            
+            
         }
 
 	}

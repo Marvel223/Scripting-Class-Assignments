@@ -10,7 +10,7 @@ public class MenuScript : MonoBehaviour
     public Button startText;
     public Button exitText;
     public Canvas timerMenu;
-    public bool isTimeUp;
+   
 
     //pause menu
     public Canvas pauseMenu;
@@ -31,7 +31,7 @@ public class MenuScript : MonoBehaviour
         pauseMenu.enabled = false;
         paused = false;
         timerMenu.enabled = false;
-        isTimeUp = false;
+        
 
     }
 
@@ -46,10 +46,12 @@ public class MenuScript : MonoBehaviour
 
     public void TimeHasEnded()
     {
-        
         timerMenu.enabled = true;
         Time.timeScale = 0;
-        isTimeUp = true;
+        paused = true;
+        
+        
+        
     }
 
     public void ToMainMenu()
@@ -59,8 +61,8 @@ public class MenuScript : MonoBehaviour
         Time.timeScale = 1;
         int scene = SceneManager.GetSceneByName("MenuScene").buildIndex;
         SceneManager.LoadScene(0, LoadSceneMode.Single);
-        isTimeUp = false;
     }
+        
 
     public void ResumeGame()
     {
@@ -70,13 +72,16 @@ public class MenuScript : MonoBehaviour
         Time.timeScale = 1;
 
     }
-
+   
     public void StartNewGame()
     {
-        isTimeUp = false;
-        Time.timeScale = 1;
         int scene = SceneManager.GetSceneByName("Moving").buildIndex;
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        paused = false;
+        timerMenu.enabled = false;
+        Time.timeScale = 1;
+      
+        
     }
 
     public void ExitPress()
@@ -102,10 +107,9 @@ public class MenuScript : MonoBehaviour
         exitText.enabled = false;
         int scene = SceneManager.GetSceneByName("Moving").buildIndex;
         SceneManager.LoadScene(1, LoadSceneMode.Single);
-
-
     }
 
+ 
     public void ExitGame()
     {
         Application.Quit();
