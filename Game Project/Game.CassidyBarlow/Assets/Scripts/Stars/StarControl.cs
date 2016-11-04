@@ -15,7 +15,7 @@ public class StarControl : MonoBehaviour
     
 	void Start()
 	{
-		rigid = GetComponent<Rigidbody> ();
+        rigid = GetComponent<Rigidbody>();
 		StartCoroutine (RunRandomForce ());
         playerCollided = false;
         print ("Star has been Created");
