@@ -13,7 +13,7 @@ public class Recycler : MonoBehaviour
 	void Start ()
     {
         cube = this.GetComponent<Transform>();
-        if ( canBeRecycled)
+        if (canBeRecycled)
             RecycleAction(this);
 	}
 
