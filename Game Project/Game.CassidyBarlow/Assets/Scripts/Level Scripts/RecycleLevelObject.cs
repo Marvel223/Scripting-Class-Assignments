@@ -28,7 +28,7 @@ public class RecycleLevelObject : MonoBehaviour {
         newLocation.x = nextSectionPosition;
         recyclableList[i].cube.position = newLocation;
         nextSectionPosition += distance;
-        if (recyclableList.Count > 9)
+        if (recyclableList.Count > 0)
             recyclableList.RemoveAt(i);
     }           
 }

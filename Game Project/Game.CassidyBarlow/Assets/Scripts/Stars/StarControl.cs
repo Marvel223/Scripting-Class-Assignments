@@ -11,13 +11,12 @@ public class StarControl : MonoBehaviour
 	public float torqueRange = .5f;
 	private Vector3 forceVector;
 	private Vector3 torqueVector;
-    private bool playerCollided;
+    
     
 	void Start()
 	{
         rigid = GetComponent<Rigidbody>();
 		StartCoroutine (RunRandomForce ());
-        playerCollided = false;
         print ("Star has been Created");
         
 
@@ -48,10 +47,10 @@ public class StarControl : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             Destroy(gameObject);
-            playerCollided = true;
+            
             print ("star has been destroyed");
             ScoreManager.scoreCount += 1;
-           
+            CountDownTimer.timeLeft += 1;
         }
 
     }
