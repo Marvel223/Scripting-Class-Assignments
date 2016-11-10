@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+		tempPos.z = 0;
+
         //waiting for input and comparing jump count
        if (Input.GetKeyDown(KeyCode.Space) && jumpCount <= jumpCountMax-1)
         {
@@ -89,6 +91,8 @@ public class PlayerMovement : MonoBehaviour {
         //moves the character controller at an even pace
         //deltaTime slows it to a manageable rate, no matter what the frame rate. Adds consitent time.
         myCC.Move(tempPos * Time.deltaTime);
+
+
     }
 
     

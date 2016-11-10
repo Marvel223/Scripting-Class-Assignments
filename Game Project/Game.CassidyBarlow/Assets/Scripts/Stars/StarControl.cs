@@ -50,7 +50,7 @@ public class StarControl : MonoBehaviour
             
             print ("star has been destroyed");
             ScoreManager.scoreCount += 1;
-            CountDownTimer.timeLeft += 1;
+            
         }
 
     }
