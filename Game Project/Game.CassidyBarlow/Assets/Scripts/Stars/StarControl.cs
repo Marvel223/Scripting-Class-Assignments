@@ -13,11 +13,13 @@ public class StarControl : MonoBehaviour
 	private Vector3 torqueVector;
     
     
+    
 	void Start()
 	{
         rigid = GetComponent<Rigidbody>();
 		StartCoroutine (RunRandomForce ());
         print ("Star has been Created");
+        
         
 
     }
@@ -47,7 +49,7 @@ public class StarControl : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             Destroy(gameObject);
-            
+         
             print ("star has been destroyed");
             ScoreManager.scoreCount += 1;
             

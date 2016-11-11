@@ -18,11 +18,13 @@ public class PlayerMovement : MonoBehaviour {
     public int slideDuration = 20;
     public float slideTime = 0.01f;
 
-    private ScoreManager sM;
+    
 
     //coroutine for sliding character
     IEnumerator Slide()
     {
+        
+       
         //set a temp var to the value of slideDuration
         int durationTemp = slideDuration;
         //
@@ -54,26 +56,20 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 		tempPos.z = 0;
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            StartCoroutine(Slide());
+        }
 
-        //waiting for input and comparing jump count
-       if (Input.GetKeyDown(KeyCode.Space) && jumpCount <= jumpCountMax-1)
+            //waiting for input and comparing jump count
+            if (Input.GetKeyDown(KeyCode.Space) && jumpCount <= jumpCountMax-1)
         {
             //incrementing jump cpunt by 1
             jumpCount++;
             //adding the jump speed var to the tempPos var
             tempPos.y = jumpSpeed;
         }
-       //start sliding
-       if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyDown(KeyCode.S))
-        {
-            //start couroutine is a function that calls a coroutine. use the coroutine in the argument
-            StartCoroutine(Slide());
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyDown(KeyCode.S))
-        {
-            //start couroutine is a function that calls a coroutine. use the coroutine in the argument
-            StartCoroutine(Slide());
-        }
+     
 
 
         //test if the character controller is grounded
