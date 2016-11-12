@@ -1,33 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WolfControll : MonoBehaviour {
-    private CharacterController wolfCC;
-    private Vector3 tempPos;
+public class WolfControll : MonoBehaviour
+{
+    public Transform moveToPoint;
+    
+    
 
-    public float speed = 5;
-    public float gravity = 5;
-    public float jumpSpeed = 1;
-    // Use this for initialization
     void Start ()
     {
-        wolfCC = GetComponent<CharacterController>();
-        
-	
-	}
-
-    void Update()
-    {
-        tempPos.z = 0;
-        tempPos.y -= gravity;
-        tempPos.x = speed;
-        wolfCC.Move(tempPos * Time.deltaTime);
+        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        navAgent.destination = moveToPoint.position;
     }
 
-    void OnTriggerEnter (Collider collider)
-    {
-        
 
+    void OnTiggerEnter (Collider collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            
+            print("Hit!");
+        
+            ScoreManager.scoreCount -= 10;
+
+        }
+
+        if(collider.CompareTag("OffScreen"))
+        {
+            Destroy(gameObject);
+        }
 
     }
+
+
 }
+    
