@@ -28,7 +28,7 @@ public class CloneStar : MonoBehaviour
              * }
              * */
             Instantiate(star, spawnPoints[i].position, Quaternion.identity);
-			yield return new WaitForSeconds (spawnFrequency = Random.Range(1, 3));
+			yield return new WaitForSeconds (spawnFrequency = Random.Range(1, 4));
 		}
 	}
 
