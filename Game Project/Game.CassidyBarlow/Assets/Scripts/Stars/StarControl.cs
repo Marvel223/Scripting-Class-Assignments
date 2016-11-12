@@ -11,6 +11,9 @@ public class StarControl : MonoBehaviour
 	public float torqueRange = .5f;
 	private Vector3 forceVector;
 	private Vector3 torqueVector;
+	public int gravity = 1;
+
+
     
     
     
@@ -32,9 +35,10 @@ public class StarControl : MonoBehaviour
 			forceVector.x = Random.Range (-forceRange, forceRange);
 			torqueVector.z = Random.Range (-torqueRange, 2);
 			rigid.AddTorque (torqueVector);
-			rigid.AddForce (forceVector);
+			rigid.AddForce (forceVector * gravity);
 			forceTime--;
 		}
+
 	}
 
 	public float endTime = 7;
