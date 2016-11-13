@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (collider.CompareTag("ThrowBackTrigger"))
         {
-            tempPos.y = jumpSpeed;
+            tempPos.y = jumpSpeed + jumpSpeed * 0.5f;
         }
 
     }
