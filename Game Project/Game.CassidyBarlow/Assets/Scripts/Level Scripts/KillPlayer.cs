@@ -11,6 +11,8 @@ public class KillPlayer : MonoBehaviour
             print("player has died");
             restartCurrentScene();
         }
+
+       
     }
     //This function restarts the scene so that both player and land modules respawn. This Restart's the scene entirely upon player's death.
     public void restartCurrentScene()

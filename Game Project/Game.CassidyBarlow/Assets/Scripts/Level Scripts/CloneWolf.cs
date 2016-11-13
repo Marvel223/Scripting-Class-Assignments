@@ -14,22 +14,20 @@ public class CloneWolf : MonoBehaviour
     
     IEnumerator SpawnWolf ()
     {
+        yield return new WaitForSeconds(5);
         while (canSpawnWolf)
         {
             i = Random.Range(0, spawnpoints.Length - 1);
             Instantiate(wolf, spawnpoints[i].position, Quaternion.identity);
-            yield return new WaitForSeconds(wolfSpawnFrequeny = Random.Range(20, 60));
+            yield return new WaitForSeconds(wolfSpawnFrequeny = Random.Range(20, 40));
         }
     }
     
  
 	// Use this for initialization
 	void Start () {
+        
         StartCoroutine(SpawnWolf());
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

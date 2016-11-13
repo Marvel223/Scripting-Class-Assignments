@@ -91,6 +91,15 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
+
+    void OnTriggerEnter (Collider collider)
+    {
+        if (collider.CompareTag("ThrowBackTrigger"))
+        {
+            tempPos.y = jumpSpeed;
+        }
+
+    }
     
 }
 

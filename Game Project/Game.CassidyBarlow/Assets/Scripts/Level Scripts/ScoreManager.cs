@@ -15,13 +15,13 @@ public class ScoreManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if(scoreCount < 0)
+        {
+            scoreCount = 0;
+        }
         scoreText.text = "Score: " + scoreCount;
     }
 
-    void AddPoints()
-    {
-
-    }
 
 
    

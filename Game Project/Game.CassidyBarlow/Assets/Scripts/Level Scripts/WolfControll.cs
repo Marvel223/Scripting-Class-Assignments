@@ -3,35 +3,54 @@ using System.Collections;
 
 public class WolfControll : MonoBehaviour
 {
-    public Transform moveToPoint;
     
-    
+    private CharacterController wolfCC;
+    private Vector3 wolfPos;
+    public float speed = 1;
+    public float gravity = 1;
+    public float jumpSpeed = 1;
 
-    void Start ()
+
+
+
+    void Start()
     {
-        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
-        navAgent.destination = moveToPoint.position;
+        wolfCC = GetComponent<CharacterController>();
     }
 
-
-    void OnTiggerEnter (Collider collider)
+    void Update ()
     {
-        if (collider.CompareTag("Player"))
-        {
-            
-            print("Hit!");
-        
-            ScoreManager.scoreCount -= 10;
-
-        }
-
+        wolfPos.z = 0;
+        wolfPos.y -= gravity;
+        wolfPos.x = speed;
+        wolfCC.Move(wolfPos * Time.deltaTime);
+    }
+    
+    void OnTriggerEnter(Collider collider)
+    {
         if(collider.CompareTag("OffScreen"))
         {
             Destroy(gameObject);
+            print("Collieded");
         }
 
+        if(collider.CompareTag("LosePoints"))
+        {
+            ScoreManager.scoreCount -= 5;
+            
+        }
+
+        if (collider.CompareTag("JumpTrigger"))
+        {
+            wolfPos.y = jumpSpeed;
+            
+            
+            
+        }
     }
 
+
+   
 
 }
     
