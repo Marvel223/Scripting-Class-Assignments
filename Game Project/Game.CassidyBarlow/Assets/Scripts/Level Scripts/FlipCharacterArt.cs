@@ -17,12 +17,12 @@ public class FlipCharacterArt : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) && !forward)
+		if (Input.GetKeyDown(KeyCode.RightArrow) && !forward)
         {
             FlipCharacter(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.A) && forward)
+		if (Input.GetKeyDown(KeyCode.LeftArrow) && forward)
         {
             FlipCharacter(false);
         }

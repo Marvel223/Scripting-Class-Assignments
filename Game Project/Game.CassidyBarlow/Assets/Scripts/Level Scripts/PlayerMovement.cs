@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour {
     void Update() {
 		tempPos.z = 0;
 		
-        if (Input.GetKey(KeyCode.LeftArrow))
+		if (Input.GetKey(KeyCode.Q))
         {
             StartCoroutine(Slide());
         }
@@ -87,10 +87,18 @@ public class PlayerMovement : MonoBehaviour {
             //adding gravity var to the y position of the tempPos var
         tempPos.y -= gravity;
 
+		if (Input.GetKeyDown (KeyCode.LeftArrow)) 
+		{
+			tempPos.x = -speed;
+		}
 
+		if (Input.GetKeyDown (KeyCode.RightArrow)) 
+		{
+			tempPos.x = speed;
+		}
 
         //adding the speed var to the tempPos var x value with the right/left arrow keys
-        tempPos.x = speed * Input.GetAxis("Horizontal");
+        //tempPos.x = speed * Input.GetAxis("Horizontal");
 		
         //moves the character controller at an even pace
         //deltaTime slows it to a manageable rate, no matter what the frame rate. Adds consitent time.
