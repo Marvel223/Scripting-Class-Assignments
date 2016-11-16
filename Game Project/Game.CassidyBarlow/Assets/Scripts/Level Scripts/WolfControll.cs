@@ -34,11 +34,6 @@ public class WolfControll : MonoBehaviour
             print("Collieded");
         }
 
-        if(collider.CompareTag("LosePoints"))
-        {
-            ScoreManager.scoreCount -= 5;
-            
-        }
 
         if (collider.CompareTag("JumpTrigger"))
         {

@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 		tempPos.z = 0;
-		myAnimator.SetInteger ("Speed");
+		
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             StartCoroutine(Slide());
@@ -87,12 +87,11 @@ public class PlayerMovement : MonoBehaviour {
             //adding gravity var to the y position of the tempPos var
         tempPos.y -= gravity;
 
-		if(Input.GetAxis("Horizontal"))
-		{
-			myAnimator.SetInteger ("Speed", mathF.abs "horizontal");
+
+
         //adding the speed var to the tempPos var x value with the right/left arrow keys
-			tempPos.x = speed;
-		}
+        tempPos.x = speed * Input.GetAxis("Horizontal");
+		
         //moves the character controller at an even pace
         //deltaTime slows it to a manageable rate, no matter what the frame rate. Adds consitent time.
         myCC.Move(tempPos * Time.deltaTime);
@@ -106,6 +105,7 @@ public class PlayerMovement : MonoBehaviour {
         if (collider.CompareTag("ThrowBackTrigger"))
         {
             tempPos.y = jumpSpeed + jumpSpeed * 0.5f;
+            ScoreManager.scoreCount -= 5;
         }
 
     }
