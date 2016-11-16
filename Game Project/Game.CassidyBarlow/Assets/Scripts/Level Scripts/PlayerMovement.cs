@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour {
     public int slideDuration = 20;
     public float slideTime = 0.01f;
 
+	private Animator myAnimator;
+
+
     
 
     //coroutine for sliding character
@@ -50,12 +53,13 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         //This "finds" the character component. Calls character controller on object
         myCC = GetComponent<CharacterController>();
-       
+		myAnimator = GetComponent<Animator> ();
     }
 
     // Update is called once per frame
     void Update() {
 		tempPos.z = 0;
+		myAnimator.SetInteger ("Speed");
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             StartCoroutine(Slide());
@@ -68,6 +72,7 @@ public class PlayerMovement : MonoBehaviour {
             jumpCount++;
             //adding the jump speed var to the tempPos var
             tempPos.y = jumpSpeed;
+
         }
      
 
@@ -82,8 +87,12 @@ public class PlayerMovement : MonoBehaviour {
             //adding gravity var to the y position of the tempPos var
         tempPos.y -= gravity;
 
+		if(Input.GetAxis("Horizontal"))
+		{
+			myAnimator.SetInteger ("Speed", mathF.abs "horizontal");
         //adding the speed var to the tempPos var x value with the right/left arrow keys
-        tempPos.x = speed*Input.GetAxis("Horizontal");
+			tempPos.x = speed;
+		}
         //moves the character controller at an even pace
         //deltaTime slows it to a manageable rate, no matter what the frame rate. Adds consitent time.
         myCC.Move(tempPos * Time.deltaTime);
