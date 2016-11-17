@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour {
     public int slideDuration = 20;
     public float slideTime = 0.01f;
 
-	private Animator myAnimator;
+
+	 public Animator myAnimator;
 
 
     
@@ -57,7 +58,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update() 
+	{
 		tempPos.z = 0;
 		
 		if (Input.GetKey(KeyCode.Q))
@@ -66,39 +68,50 @@ public class PlayerMovement : MonoBehaviour {
         }
 
             //waiting for input and comparing jump count
-            if (Input.GetKeyDown(KeyCode.Space) && jumpCount <= jumpCountMax-1)
-        {
-            //incrementing jump cpunt by 1
-            jumpCount++;
-            //adding the jump speed var to the tempPos var
-            tempPos.y = jumpSpeed;
+		if (Input.GetKeyDown (KeyCode.Space) && jumpCount <= jumpCountMax - 1) 
+		{
+			//incrementing jump cpunt by 1
+			jumpCount++;
+			//adding the jump speed var to the tempPos var
+			tempPos.y = jumpSpeed;
+			myAnimator.SetBool ("IsGrounded", false);
+		}
+		if (speed < 1) {
+			myAnimator.SetInteger ("Speed", 0);
+		}
 
-        }
-     
+		if (speed > 1) {
+			myAnimator.SetInteger ("Speed", 2);
+		}
 
-
-        //test if the character controller is grounded
-        if (myCC.isGrounded)
-        {
-            //reset the jump count if grounded
-            jumpCount = 0;
-        }
-
-            //adding gravity var to the y position of the tempPos var
-        tempPos.y -= gravity;
-
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) 
+		/*if (Input.GetKeyDown (KeyCode.LeftArrow)) 
 		{
 			tempPos.x = -speed;
 		}
 
 		if (Input.GetKeyDown (KeyCode.RightArrow)) 
 		{
-			tempPos.x = speed;
-		}
+				tempPos.x = speed;
+		}*/
+        
+        //test if the character controller is grounded
+        if (myCC.isGrounded)
+        {
+            //reset the jump count if grounded
+            jumpCount = 0;
+			myAnimator.SetBool ("IsGrounded", true);
+        }
+
+            //adding gravity var to the y position of the tempPos var
+        tempPos.y -= gravity;
 
         //adding the speed var to the tempPos var x value with the right/left arrow keys
-        //tempPos.x = speed * Input.GetAxis("Horizontal");
+	
+		
+		tempPos.x = speed * Input.GetAxis ("Horizontal");
+
+
+
 		
         //moves the character controller at an even pace
         //deltaTime slows it to a manageable rate, no matter what the frame rate. Adds consitent time.
@@ -106,6 +119,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
     }
+
 
 
     void OnTriggerEnter (Collider collider)
