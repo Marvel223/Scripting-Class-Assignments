@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     public float slideTime = 0.01f;
 
 
-	 public Animator myAnimator;
+	
 
 
     
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         //This "finds" the character component. Calls character controller on object
         myCC = GetComponent<CharacterController>();
-		myAnimator = GetComponent<Animator> ();
+		
     }
 
     // Update is called once per frame
@@ -74,32 +74,15 @@ public class PlayerMovement : MonoBehaviour {
 			jumpCount++;
 			//adding the jump speed var to the tempPos var
 			tempPos.y = jumpSpeed;
-			myAnimator.SetBool ("IsGrounded", false);
+			
 		}
-		if (speed < 1) {
-			myAnimator.SetInteger ("Speed", 0);
-		}
-
-		if (speed > 1) {
-			myAnimator.SetInteger ("Speed", 2);
-		}
-
-		/*if (Input.GetKeyDown (KeyCode.LeftArrow)) 
-		{
-			tempPos.x = -speed;
-		}
-
-		if (Input.GetKeyDown (KeyCode.RightArrow)) 
-		{
-				tempPos.x = speed;
-		}*/
         
         //test if the character controller is grounded
         if (myCC.isGrounded)
         {
             //reset the jump count if grounded
             jumpCount = 0;
-			myAnimator.SetBool ("IsGrounded", true);
+			
         }
 
             //adding gravity var to the y position of the tempPos var
