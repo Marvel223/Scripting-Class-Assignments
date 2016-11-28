@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-public class KillPlayer : MonoBehaviour
+public class KillPlayer : MenuScript
 {
 
 
@@ -12,8 +12,8 @@ public class KillPlayer : MonoBehaviour
 
             Destroy(this.gameObject);
             print("player has died");
-            
-            restartCurrentScene();
+			PlayerHasDied();
+            //restartCurrentScene();
         }
 
        

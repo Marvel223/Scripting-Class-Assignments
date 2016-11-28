@@ -20,6 +20,9 @@ public class MenuScript : MonoBehaviour
     //death menu
     public Canvas deathMenu;
 
+	public Text DeathScoreText;
+	public Text TimerEndScoreText;
+
     
 
 
@@ -52,6 +55,7 @@ public class MenuScript : MonoBehaviour
     {
         deathMenu.enabled = true;
         Time.timeScale = 0;
+		DeathScoreText.text = "You Collected " + ScoreManager.scoreCount + " Stars";
 
     }
 
@@ -60,7 +64,7 @@ public class MenuScript : MonoBehaviour
         timerMenu.enabled = true;
         Time.timeScale = 0;
         paused = true;
-        
+		TimerEndScoreText.text = "You Collected " + ScoreManager.scoreCount + " Stars";
         
         
     }
@@ -86,13 +90,15 @@ public class MenuScript : MonoBehaviour
     }
    
     public void StartNewGame()
-    {
-        int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
-        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+	{
+		
+		int scene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
         paused = false;
         timerMenu.enabled = false;
-        deathMenu.enabled = false;
-        Time.timeScale = 1;
+		deathMenu.enabled = false;
+		//Time.timeScale = 1;
+
       
         
     }
