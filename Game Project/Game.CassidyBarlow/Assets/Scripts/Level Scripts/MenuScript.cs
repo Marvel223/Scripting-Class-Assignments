@@ -17,6 +17,9 @@ public class MenuScript : MonoBehaviour
     public Button pauseText;
     public bool paused;
 
+    //death menu
+    public Canvas deathMenu;
+
     
 
 
@@ -31,6 +34,7 @@ public class MenuScript : MonoBehaviour
         pauseMenu.enabled = false;
         paused = false;
         timerMenu.enabled = false;
+        deathMenu.enabled = false;
         
 
     }
@@ -41,6 +45,13 @@ public class MenuScript : MonoBehaviour
         paused = true;
         Time.timeScale = 0;
         
+
+    }
+
+    public void PlayerHasDied()
+    {
+        deathMenu.enabled = true;
+        Time.timeScale = 0;
 
     }
 
@@ -58,6 +69,7 @@ public class MenuScript : MonoBehaviour
     {
         timerMenu.enabled = false;
         pauseMenu.enabled = false;
+        deathMenu.enabled = false;
         Time.timeScale = 1;
         int scene = SceneManager.GetSceneByName("MenuScene").buildIndex;
         SceneManager.LoadScene(0, LoadSceneMode.Single);
@@ -75,10 +87,11 @@ public class MenuScript : MonoBehaviour
    
     public void StartNewGame()
     {
-        int scene = SceneManager.GetSceneByName("Moving").buildIndex;
+        int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
         paused = false;
         timerMenu.enabled = false;
+        deathMenu.enabled = false;
         Time.timeScale = 1;
       
         
@@ -105,7 +118,7 @@ public class MenuScript : MonoBehaviour
         quitMenu.enabled = false;
         startText.enabled = false;
         exitText.enabled = false;
-        int scene = SceneManager.GetSceneByName("Moving").buildIndex;
+        int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 

@@ -3,12 +3,16 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 public class KillPlayer : MonoBehaviour
 {
+
+
     void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Player")
         {
+
             Destroy(this.gameObject);
             print("player has died");
+            
             restartCurrentScene();
         }
 
@@ -23,5 +27,5 @@ public class KillPlayer : MonoBehaviour
 }
     
 
-        
+       
 
