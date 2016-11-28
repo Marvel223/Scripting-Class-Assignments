@@ -92,15 +92,21 @@ public class MenuScript : MonoBehaviour
     public void StartNewGame()
 	{
 		
-		int scene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+		//int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
+       // SceneManager.LoadScene(, LoadSceneMode.Single);
         paused = false;
         timerMenu.enabled = false;
 		deathMenu.enabled = false;
-		//Time.timeScale = 1;
-
-      
         
+        restartCurrentScene();
+        Time.timeScale = 1;
+        
+    }
+
+    public void restartCurrentScene()
+    {
+        int scene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 
     public void ExitPress()
