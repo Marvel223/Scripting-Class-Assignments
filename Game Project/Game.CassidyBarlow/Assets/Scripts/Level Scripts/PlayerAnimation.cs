@@ -30,19 +30,19 @@ public class PlayerAnimation : MonoBehaviour
         }
 
                 //Running
-        if (Input.GetKeyDown(KeyCode.A) && playerCC.isGrounded && yesGrounded)
+        if (Input.GetKeyDown(KeyCode.A) && yesGrounded)
         {
             playerAnimator.SetInteger("State", 1);
         }
-        if (Input.GetKeyUp(KeyCode.A) && playerCC.isGrounded && yesGrounded)
+        if (Input.GetKeyUp(KeyCode.A) && yesGrounded)
         {
             playerAnimator.SetInteger("State", 0);
         }
-        if (Input.GetKeyDown(KeyCode.D) && playerCC.isGrounded && yesGrounded)
+        if (Input.GetKeyDown(KeyCode.D) && yesGrounded)
         {
             playerAnimator.SetInteger("State", 1);
         }
-        if (Input.GetKeyUp(KeyCode.D) && playerCC.isGrounded && yesGrounded)
+        if (Input.GetKeyUp(KeyCode.D) && yesGrounded)
         {
             playerAnimator.SetInteger("State", 0);
         }

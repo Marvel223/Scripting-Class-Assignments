@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+
+// RESTART AFTER TIMER END IS NOT WORKING
 public class MenuScript : MonoBehaviour
 {   //main menu
     public Canvas quitMenu;
@@ -55,6 +57,7 @@ public class MenuScript : MonoBehaviour
     {
         deathMenu.enabled = true;
         Time.timeScale = 0;
+		paused = true;
 		DeathScoreText.text = "You Collected " + ScoreManager.scoreCount + " Stars";
 
     }
@@ -91,15 +94,16 @@ public class MenuScript : MonoBehaviour
    
     public void StartNewGame()
 	{
-		
+		restartCurrentScene();
+		Time.timeScale = 1;
 		//int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
        // SceneManager.LoadScene(, LoadSceneMode.Single);
         paused = false;
         timerMenu.enabled = false;
 		deathMenu.enabled = false;
         
-        restartCurrentScene();
-        Time.timeScale = 1;
+        
+        
         
     }
 
