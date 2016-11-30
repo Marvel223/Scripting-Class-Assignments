@@ -7,7 +7,7 @@ public class CountDownTimer : MenuScript
 {
 
     
-    public int timeLeft = 30;
+    public static int timeLeft = 30;
     public Text countDownText;
     
     void Start ()
@@ -21,7 +21,7 @@ public class CountDownTimer : MenuScript
 
         if (timeLeft <=0)
         {
-            StopCoroutine(LoseTime());
+            //StopCoroutine(LoseTime());
             countDownText.text = "Time: 0";
             TimeHasEnded();
             

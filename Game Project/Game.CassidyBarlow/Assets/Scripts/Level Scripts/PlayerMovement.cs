@@ -3,90 +3,75 @@ using System.Collections;
 
 
 public class PlayerMovement : MonoBehaviour {
-    //This is the character controller component
+    //THIS IS THE CHARACTER CONTROLLER COMPONENT
     private CharacterController myCC;
-    // temp var of datatype vector 3 to move the character
+    //TEMP VAR OF DATATYPE VECTOR 3 TO MOVE THE CHARACTER
     private Vector3 tempPos;
-    //Speed of the temp var in x
+    //SPEED OF TEMP VAR IN X AXIS
     public float speed = 1;
     public float gravity = 1;
+	//JUMPING Y AXIS
     public float jumpSpeed = 1;
     public int jumpCountBase = 2;
     public int jumpCount = 0;
     public int jumpCountMax = 2;
-    //sliding vars
-    public int slideDuration = 20;
+    //SLIDING VARS
+    /*public int slideDuration = 20;
     public float slideTime = 0.01f;
 
-
-	
-
-
-    
-
-    //coroutine for sliding character
+    //COROUTINE FOR SLIDING
     IEnumerator Slide()
     {
         
        
-        //set a temp var to the value of slideDuration
+        //SET A TEMP VAR TO THE VALUE SLIDE DURATION
         int durationTemp = slideDuration;
-        //
         float speedTemp = speed;
         speed += speed;
-        //whilw loop runs "while" the slideDuration is greater than 0
+        //WHILE LOOP RUNS WHILE THE SLIDE DURATION IS GREATER THAN 0
         while (slideDuration < 0)
         {
-            //decrement the slide duration
+            //DECREMENT THE SLIDE DURATION
             slideDuration--;
-            //yield "holds the coroutine"
-            //return "sends" to the coroutine to an operation while yielding
-            //new creates instance of an object
-            //wait for seconds is an object that waits for a duration time
+            //YIELD HOLDS THE COROUTINE
+            //RETURN SENDS THE CORUTINE TO AN OPERATION WHILE YIELDING
+            //NEW CREATES AN INSTANCE OF AN OBJECT
+            //WAITFORSECONDS WAITS FOR A CERTAIN DURATION OF TIME
             yield return new WaitForSeconds(slideTime);
             
         }
         speed = speedTemp;
         slideDuration = durationTemp;
-    }
+    }*/
 
-    // Use this for initialization
     void Start() {
-        //This "finds" the character component. Calls character controller on object
+        //THIS FINDS THE CHARACTER COMPONENT, CALLS CHARACTER CONTOLLER ON OBJECT
         myCC = GetComponent<CharacterController>();
 		
     }
 
-    // Update is called once per frame
     void Update() 
 	{
+		//FREEZE Z AXIS
 		tempPos.z = 0;
-		
-		if (Input.GetKey(KeyCode.Q))
-        {
-            StartCoroutine(Slide());
-        }
-
-            //waiting for input and comparing jump count
+		//GRAVITY WORKING
+		tempPos.y -= gravity;
+        //WAITING FOR INPUT AN COMPARING JUMP COUNT
 		if (Input.GetKeyDown (KeyCode.Space) && jumpCount <= jumpCountMax - 1) 
 		{
-			//incrementing jump cpunt by 1
+			//INCREMENTING JUMP COUNT BY 1
 			jumpCount++;
-			//adding the jump speed var to the tempPos var
+			//ADDING JUMP SPEED VAR TO THE TEMP POS VAR
 			tempPos.y = jumpSpeed;
-			
 		}
-        
-        //test if the character controller is grounded
+        //TEST IF CHARACTER CONTROLLER IS GROUNDED
         if (myCC.isGrounded)
         {
-            //reset the jump count if grounded
+            //RESET JUMP COUNT IF GROUNDED.
             jumpCount = 0;
-			
         }
-
             //adding gravity var to the y position of the tempPos var
-        tempPos.y -= gravity;
+        
 
         //adding the speed var to the tempPos var x value with the right/left arrow keys
 	
