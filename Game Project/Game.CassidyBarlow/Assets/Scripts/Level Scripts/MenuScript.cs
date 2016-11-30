@@ -58,7 +58,15 @@ public class MenuScript : MonoBehaviour
         deathMenu.enabled = true;
         Time.timeScale = 0;
 		paused = true;
-		DeathScoreText.text = "You Collected " + ScoreManager.scoreCount + " Stars";
+        if(ScoreManager.scoreCount >= 2)
+        {
+            DeathScoreText.text = "You Collected " + ScoreManager.scoreCount + " Stars";
+        }
+
+        if (ScoreManager.scoreCount <= 1)
+        {
+            DeathScoreText.text = "You Collected " + ScoreManager.scoreCount + " Star";
+        }
 
     }
 
@@ -96,7 +104,7 @@ public class MenuScript : MonoBehaviour
 	{
 		restartCurrentScene();
 		Time.timeScale = 1;
-		CountDownTimer.timeLeft = 500;
+		CountDownTimer.timeLeft = 4;
 		//int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
        // SceneManager.LoadScene(, LoadSceneMode.Single);
         paused = false;
