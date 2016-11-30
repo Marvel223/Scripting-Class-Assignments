@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour {
     public int jumpCount = 0;
     public int jumpCountMax = 2;
     //SLIDING VARS
+
+	public bool enemyHit;
     /*public int slideDuration = 20;
     public float slideTime = 0.01f;
 
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         //THIS FINDS THE CHARACTER COMPONENT, CALLS CHARACTER CONTOLLER ON OBJECT
         myCC = GetComponent<CharacterController>();
+		enemyHit = false;
 		
     }
 
@@ -92,14 +95,13 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnTriggerEnter (Collider collider)
     {
-        if (collider.CompareTag("ThrowBackTrigger"))
-        {
-            tempPos.y = jumpSpeed + jumpSpeed * 0.5f;
-            ScoreManager.scoreCount -= 5;
-        }
-
+		if (collider.CompareTag ("ThrowBackTrigger")) {
+			tempPos.y = jumpSpeed + jumpSpeed * 0.5f;
+			ScoreManager.scoreCount -= 5;
+			enemyHit = true;
+		}
+	
     }
-    
 }
 
 

@@ -96,7 +96,7 @@ public class MenuScript : MonoBehaviour
 	{
 		restartCurrentScene();
 		Time.timeScale = 1;
-		CountDownTimer.timeLeft = 30;
+		CountDownTimer.timeLeft = 500;
 		//int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
        // SceneManager.LoadScene(, LoadSceneMode.Single);
         paused = false;

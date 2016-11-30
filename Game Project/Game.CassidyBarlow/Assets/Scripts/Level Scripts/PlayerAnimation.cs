@@ -7,7 +7,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator playerAnimator;
     private CharacterController playerCC;
     public bool yesGrounded = true;
-    
+	public bool landed = true;
    
     void Start()
     {
@@ -47,13 +47,45 @@ public class PlayerAnimation : MonoBehaviour
             playerAnimator.SetInteger("State", 0);
         }
 
-        if(!yesGrounded)
+		if(Input.GetKeyDown(KeyCode.Space) && !yesGrounded)
         {
             playerAnimator.SetInteger("State", 2);
         }
+
+		if(Input.GetKeyUp(KeyCode.Space) && !yesGrounded)
+		{
+			playerAnimator.SetInteger("State", 2);
+		}
+			
     }
 
-           
-   
+	void OnTriggerEnter (Collider collider)
+	{
+		if (collider.CompareTag ("ThrowBackTrigger")) 
+		{
+			landed = false;
+			StartCoroutine(DamageAnimation());
+		}
+
+	}
+
+	void OnCollidsonEnter( Collider collider)
+	{
+		if (collider.CompareTag ("Level")) 
+		{
+			landed = true;
+		}
+						
+	}
+
+	IEnumerator DamageAnimation()
+	{
+		playerAnimator.SetInteger ("State", 3);
+		yield return new WaitForSeconds (3);
+	}
 }
+
+
+   
+
 
