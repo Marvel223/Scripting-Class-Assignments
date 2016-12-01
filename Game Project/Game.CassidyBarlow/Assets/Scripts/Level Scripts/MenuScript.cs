@@ -67,6 +67,10 @@ public class MenuScript : MonoBehaviour
         {
             DeathScoreText.text = "You Collected " + ScoreManager.scoreCount + " Star";
         }
+		if (ScoreManager.scoreCount <= 0)
+		{
+			DeathScoreText.text = "You Collected " + ScoreManager.scoreCount + " Stars";
+		}
 
     }
 
@@ -75,9 +79,18 @@ public class MenuScript : MonoBehaviour
         timerMenu.enabled = true;
         Time.timeScale = 0;
         paused = true;
-		TimerEndScoreText.text = "You Collected " + ScoreManager.scoreCount + " Stars";
-        
-        
+		if (ScoreManager.scoreCount >= 2) 
+		{
+			TimerEndScoreText.text = "You Collected " + ScoreManager.scoreCount + " Stars";
+		}
+		if (ScoreManager.scoreCount <= 1) 
+		{
+			TimerEndScoreText.text = "You Collected " + ScoreManager.scoreCount + " Star";
+		}
+		if (ScoreManager.scoreCount <= 0) 
+		{
+			TimerEndScoreText.text = "You Collected " + ScoreManager.scoreCount + " Stars";
+		}
     }
 
     public void ToMainMenu()
@@ -139,12 +152,15 @@ public class MenuScript : MonoBehaviour
     }
 
     public void StartLevel()
-    {
+	{	int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
+		SceneManager.LoadScene(1, LoadSceneMode.Single);
+		CountDownTimer.timeLeft = 4;
+		Time.timeScale = 1;
+		timerMenu.enabled = false;
         quitMenu.enabled = false;
         startText.enabled = false;
         exitText.enabled = false;
-        int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        
     }
 
  
