@@ -12,11 +12,15 @@ public class MenuScript : MonoBehaviour
     public Button startText;
     public Button exitText;
     public Canvas timerMenu;
+    
+
    
 
     //pause menu
     public Canvas pauseMenu;
     public Button pauseText;
+    public Button resumeText;
+    public Button mainMenuText;
     public bool paused;
 
     //death menu
@@ -24,6 +28,8 @@ public class MenuScript : MonoBehaviour
 
 	public Text DeathScoreText;
 	public Text TimerEndScoreText;
+
+
 
     
 
@@ -40,12 +46,19 @@ public class MenuScript : MonoBehaviour
         paused = false;
         timerMenu.enabled = false;
         deathMenu.enabled = false;
+        pauseText = pauseText.GetComponent<Button>();
+        resumeText = resumeText.GetComponent<Button>();
+        mainMenuText = mainMenuText.GetComponent<Button>();
         
 
     }
 
     public void PausePress()
     {
+        pauseText.enabled = false;
+        resumeText.enabled = true;
+        mainMenuText.enabled = true;
+        timerMenu.enabled = false;
         pauseMenu.enabled = true;
         paused = true;
         Time.timeScale = 0;
@@ -106,10 +119,14 @@ public class MenuScript : MonoBehaviour
 
     public void ResumeGame()
     {
+        resumeText.enabled = false;
+        mainMenuText.enabled = false;
+        pauseText.enabled = true;
         timerMenu.enabled = false;
         pauseMenu.enabled = false;
         paused = false;
         Time.timeScale = 1;
+        
 
     }
    
