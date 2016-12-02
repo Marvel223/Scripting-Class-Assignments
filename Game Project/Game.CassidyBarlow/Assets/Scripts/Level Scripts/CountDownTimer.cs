@@ -7,7 +7,7 @@ public class CountDownTimer : MenuScript
 {
 
     
-    public static int timeLeft = 4;
+    public static int timeLeft = 300;
     public Text countDownText;
     
     void Start ()

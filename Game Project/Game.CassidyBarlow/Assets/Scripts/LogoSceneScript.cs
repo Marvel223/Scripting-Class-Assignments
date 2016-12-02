@@ -16,7 +16,7 @@ public class LogoSceneScript : MonoBehaviour
     {
         yield return new WaitForSeconds(7);
         int scene = SceneManager.GetSceneByName("MenuScene").buildIndex;
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
 }

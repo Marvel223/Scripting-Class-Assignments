@@ -113,7 +113,7 @@ public class MenuScript : MonoBehaviour
         deathMenu.enabled = false;
         Time.timeScale = 1;
         int scene = SceneManager.GetSceneByName("MenuScene").buildIndex;
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
         
 
@@ -134,7 +134,7 @@ public class MenuScript : MonoBehaviour
 	{
 		restartCurrentScene();
 		Time.timeScale = 1;
-		CountDownTimer.timeLeft = 4;
+		CountDownTimer.timeLeft = 300;
 		//int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
        // SceneManager.LoadScene(, LoadSceneMode.Single);
         paused = false;
@@ -170,8 +170,8 @@ public class MenuScript : MonoBehaviour
 
     public void StartLevel()
 	{	int scene = SceneManager.GetSceneByName("NewMoving").buildIndex;
-		SceneManager.LoadScene(1, LoadSceneMode.Single);
-		CountDownTimer.timeLeft = 4;
+		SceneManager.LoadScene(2, LoadSceneMode.Single);
+		CountDownTimer.timeLeft = 300;
 		Time.timeScale = 1;
 		timerMenu.enabled = false;
         quitMenu.enabled = false;

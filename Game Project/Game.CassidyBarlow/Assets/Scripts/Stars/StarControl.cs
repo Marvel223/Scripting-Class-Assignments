@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class StarControl : MonoBehaviour 
 {
 	public int forceTime = 10;
@@ -12,7 +13,8 @@ public class StarControl : MonoBehaviour
 	private Vector3 forceVector;
 	private Vector3 torqueVector;
     
-	
+	private Animator starAnimator;
+
 
 
     
@@ -20,10 +22,11 @@ public class StarControl : MonoBehaviour
     
 	void Start()
 	{
+		starAnimator = GetComponent<Animator> (); 
         rigid = GetComponent<Rigidbody>();
 		StartCoroutine (RunRandomForce ());
         print ("Star has been Created");
-        
+
         
 
     }
@@ -46,11 +49,12 @@ public class StarControl : MonoBehaviour
   
 
 
-    public float endTime = 7;
+    //public float endTime = 7;
 
-    void OnCollisionEnter()
-    {
-        Destroy(gameObject, endTime); 
+	void OnCollisionEnter()
+	{
+		StartCoroutine (DestroyAfterLanding ());
+			//Destroy(gameObject, endTime);
 	}
     
     void OnTriggerEnter(Collider collider)
@@ -64,5 +68,17 @@ public class StarControl : MonoBehaviour
             
         }
 
+
+			
+
     }
+
+
+	IEnumerator DestroyAfterLanding()
+	{
+		yield return new WaitForSeconds (2);
+		starAnimator.SetInteger ("State", 1);
+		yield return new WaitForSeconds (2);
+		Destroy (gameObject);
+	}
 }

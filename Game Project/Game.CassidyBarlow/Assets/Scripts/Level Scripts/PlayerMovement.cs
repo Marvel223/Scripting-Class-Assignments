@@ -15,7 +15,9 @@ public class PlayerMovement : MonoBehaviour {
     public int jumpCountBase = 2;
     public int jumpCount = 0;
     public int jumpCountMax = 2;
+
     //SLIDING VARS
+
 
 	public bool enemyHit;
     /*public int slideDuration = 20;
@@ -50,6 +52,7 @@ public class PlayerMovement : MonoBehaviour {
         //THIS FINDS THE CHARACTER COMPONENT, CALLS CHARACTER CONTOLLER ON OBJECT
         myCC = GetComponent<CharacterController>();
 		enemyHit = false;
+
 		
     }
 
@@ -78,7 +81,6 @@ public class PlayerMovement : MonoBehaviour {
 
         //adding the speed var to the tempPos var x value with the right/left arrow keys
 	
-		
 		tempPos.x = speed * Input.GetAxis ("Horizontal");
 
 
@@ -99,9 +101,22 @@ public class PlayerMovement : MonoBehaviour {
 			tempPos.y = jumpSpeed + jumpSpeed * 0.5f;
 			ScoreManager.scoreCount -= 5;
 			enemyHit = true;
+			StartCoroutine(DisablePlayerInput()); 
 		}
 	
     }
+
+
+	IEnumerator DisablePlayerInput()
+	{
+		while(enemyHit)
+		{
+			yield return new WaitForSeconds (2);
+			enemyHit = false;
+			
+	}
+
 }
 
 
+}

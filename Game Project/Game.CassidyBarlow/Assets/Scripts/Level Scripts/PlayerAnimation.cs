@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class PlayerAnimation : MonoBehaviour
+public class PlayerAnimation : PlayerMovement
 {
-
+	public Transform PlayerTrigger; 
     private Animator playerAnimator;
     private CharacterController playerCC;
     public bool yesGrounded = true;
 	public bool landed = true;
+	public bool disableAnimations;
    
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
         playerCC = GetComponent<CharacterController>();
-        
+	
         
     }
 
@@ -30,29 +32,29 @@ public class PlayerAnimation : MonoBehaviour
         }
 
                 //Running
-        if (Input.GetKeyDown(KeyCode.A) && yesGrounded)
+		if (Input.GetKeyDown(KeyCode.A) && yesGrounded && !disableAnimations)
         {
             playerAnimator.SetInteger("State", 1);
         }
-        if (Input.GetKeyUp(KeyCode.A) && yesGrounded)
+		if (Input.GetKeyUp(KeyCode.A) && yesGrounded && !disableAnimations)
         {
             playerAnimator.SetInteger("State", 0);
         }
-        if (Input.GetKeyDown(KeyCode.D) && yesGrounded)
+		if (Input.GetKeyDown(KeyCode.D) && yesGrounded && !disableAnimations)
         {
             playerAnimator.SetInteger("State", 1);
         }
-        if (Input.GetKeyUp(KeyCode.D) && yesGrounded)
+		if (Input.GetKeyUp(KeyCode.D) && yesGrounded && !disableAnimations)
         {
             playerAnimator.SetInteger("State", 0);
         }
 
-		if(Input.GetKeyDown(KeyCode.Space) && !yesGrounded)
+		if(Input.GetKeyDown(KeyCode.Space) && !yesGrounded && !disableAnimations)
         {
             playerAnimator.SetInteger("State", 2);
         }
 
-		if(Input.GetKeyUp(KeyCode.Space) && !yesGrounded)
+		if(Input.GetKeyUp(KeyCode.Space) && !yesGrounded && !disableAnimations)
 		{
 			playerAnimator.SetInteger("State", 2);
 		}
@@ -80,8 +82,11 @@ public class PlayerAnimation : MonoBehaviour
 
 	IEnumerator DamageAnimation()
 	{
+		disableAnimations = true;
 		playerAnimator.SetInteger ("State", 3);
-		yield return new WaitForSeconds (3);
+
+		yield return new WaitForSeconds (2);
+		disableAnimations = false;
 	}
 }
 
