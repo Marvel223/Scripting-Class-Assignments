@@ -23,6 +23,7 @@ public class WolfControll : MonoBehaviour
         wolfPos.z = 0;
         wolfPos.y -= gravity;
         wolfPos.x = speed;
+		speed = Random.Range (20, 40);
         wolfCC.Move(wolfPos * Time.deltaTime);
     }
     
@@ -38,9 +39,7 @@ public class WolfControll : MonoBehaviour
         if (collider.CompareTag("JumpTrigger"))
         {
             wolfPos.y = jumpSpeed;
-            
-            
-            
+         
         }
     }
 
