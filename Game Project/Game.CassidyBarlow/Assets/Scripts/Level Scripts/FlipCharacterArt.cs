@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class FlipCharacterArt : MonoBehaviour
+public class FlipCharacterArt : MenuScript
 {
     public Transform characterArt;
     //makes it so that only calls print once until direction changes
@@ -17,12 +17,12 @@ public class FlipCharacterArt : MonoBehaviour
 
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.D) && !forward)
+		if (Input.GetKeyDown(KeyCode.D) && !forward && !paused)
         {
             FlipCharacter(true);
         }
 
-		if (Input.GetKeyDown(KeyCode.A) && forward)
+		if (Input.GetKeyDown(KeyCode.A) && forward && !paused)
         {
             FlipCharacter(false);
         }

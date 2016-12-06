@@ -21,7 +21,7 @@ public class MenuScript : MonoBehaviour
     public Button pauseText;
     public Button resumeText;
     public Button mainMenuText;
-    public bool paused;
+    public static bool paused;
 
     //death menu
     public Canvas deathMenu;

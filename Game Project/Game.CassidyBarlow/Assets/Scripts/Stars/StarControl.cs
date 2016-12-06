@@ -38,7 +38,7 @@ public class StarControl : MonoBehaviour
 		{
 			yield return new WaitForSeconds (forceDuration);
 			forceVector.x = Random.Range (-forceRange, forceRange);
-			torqueVector.z = Random.Range (-torqueRange, 2);
+			torqueVector.z = Random.Range (-torqueRange, torqueRange);
 			rigid.AddTorque (torqueVector);
 			rigid.AddForce (forceVector);
 			forceTime--;

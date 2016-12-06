@@ -10,6 +10,7 @@ public class PlayerAnimation : PlayerMovement
     public bool yesGrounded = true;
 	public bool landed = true;
 	public bool disableAnimations;
+
    
     void Start()
     {
@@ -82,11 +83,11 @@ public class PlayerAnimation : PlayerMovement
 
 	IEnumerator DamageAnimation()
 	{
-		disableAnimations = true;
-		playerAnimator.SetInteger ("State", 3);
+		//disableAnimations = true;
+		playerAnimator.PlayInFixedTime("Damage");
 
 		yield return new WaitForSeconds (2);
-		disableAnimations = false;
+		//disableAnimations = false;
 	}
 }
 

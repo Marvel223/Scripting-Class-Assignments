@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour{
     //THIS IS THE CHARACTER CONTROLLER COMPONENT
     private CharacterController myCC;
     //TEMP VAR OF DATATYPE VECTOR 3 TO MOVE THE CHARACTER
