@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour{
 
 
 
+
     public bool enemyHit;
     /*public int slideDuration = 20;
     public float slideTime = 0.01f;
@@ -67,7 +68,7 @@ public class PlayerMovement : MonoBehaviour{
 		//GRAVITY WORKING
 		tempPos.y -= gravity;
         //WAITING FOR INPUT AN COMPARING JUMP COUNT
-		if (Input.GetKeyDown (KeyCode.Space) && jumpCount <= jumpCountMax - 1) 
+		if (Input.GetKeyDown (KeyCode.Space) && jumpCount <= jumpCountMax - 1 && !enemyHit) 
 		{
 			//INCREMENTING JUMP COUNT BY 1
 			jumpCount++;
@@ -81,11 +82,8 @@ public class PlayerMovement : MonoBehaviour{
             jumpCount = 0;
         }
             //adding gravity var to the y position of the tempPos var
-        
-
+			tempPos.x = speed * Input.GetAxis ("Horizontal");
         //adding the speed var to the tempPos var x value with the right/left arrow keys
-	
-		tempPos.x = speed * Input.GetAxis ("Horizontal");
 
 
 
@@ -116,10 +114,13 @@ public class PlayerMovement : MonoBehaviour{
 	{
 		while(enemyHit)
 		{
+			speed = 0;
             systemParticles.enableEmission = true;
 			yield return new WaitForSeconds (2);
 			enemyHit = false;
             systemParticles.enableEmission = false;
+			speed = 30;
+
 	}
 
 }

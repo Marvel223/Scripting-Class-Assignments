@@ -11,12 +11,13 @@ public class PlayerAnimation : PlayerMovement
 	public bool landed = true;
 	public bool disableAnimations;
 
+
    
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
         playerCC = GetComponent<CharacterController>();
-	
+
         
     }
 
@@ -33,43 +34,43 @@ public class PlayerAnimation : PlayerMovement
         }
 
                 //Running
-		if (Input.GetKeyDown(KeyCode.A) && yesGrounded && !disableAnimations)
+		if (Input.GetKeyDown(KeyCode.A) && !disableAnimations)
         {
-            playerAnimator.SetInteger("State", 1);
+            playerAnimator.SetFloat("Speed", 2);
         }
-		if (Input.GetKeyUp(KeyCode.A) && yesGrounded && !disableAnimations)
+		if (Input.GetKeyUp(KeyCode.A)&& !disableAnimations)
         {
-            playerAnimator.SetInteger("State", 0);
+			playerAnimator.SetFloat("Speed", 0);
         }
-		if (Input.GetKeyDown(KeyCode.D) && yesGrounded && !disableAnimations)
+		if (Input.GetKeyDown(KeyCode.D)&& !disableAnimations)
         {
-            playerAnimator.SetInteger("State", 1);
+			playerAnimator.SetFloat("Speed", 2);
         }
-		if (Input.GetKeyUp(KeyCode.D) && yesGrounded && !disableAnimations)
+		if (Input.GetKeyUp(KeyCode.D)&& !disableAnimations)
         {
-            playerAnimator.SetInteger("State", 0);
-        }
-
-		if(Input.GetKeyDown(KeyCode.Space) && !yesGrounded && !disableAnimations)
-        {
-            playerAnimator.SetInteger("State", 2);
+			playerAnimator.SetFloat("Speed", 0);
         }
 
-		if(Input.GetKeyUp(KeyCode.Space) && !yesGrounded && !disableAnimations)
+			if(Input.GetKeyDown(KeyCode.Space) && playerCC.isGrounded && !disableAnimations)
+        {
+			playerAnimator.SetBool("Jump", true);
+        }
+			
+			if(Input.GetKeyUp(KeyCode.Space)&& !disableAnimations)
 		{
-			playerAnimator.SetInteger("State", 2);
+			playerAnimator.SetBool("Jump", false);
 		}
-        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+		if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)&& !disableAnimations)
         {
-            playerAnimator.SetInteger("State", 1);
+            playerAnimator.SetFloat("Speed", 2);
         }
-        if (Input.GetKeyUp(KeyCode.A) && Input.GetKeyDown(KeyCode.D))
+		if (Input.GetKeyUp(KeyCode.A) && Input.GetKeyDown(KeyCode.D)&& !disableAnimations)
         {
-            playerAnimator.SetInteger("State", 1);
+            playerAnimator.SetFloat("Speed", 2);
         }
-        if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyUp(KeyCode.D))
+		if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyUp(KeyCode.D)&& !disableAnimations)
         {
-            playerAnimator.SetInteger("State", 1);
+            playerAnimator.SetFloat("Speed", 2);
         }
 
     }
@@ -78,39 +79,23 @@ public class PlayerAnimation : PlayerMovement
 	{
 		if (collider.CompareTag ("ThrowBackTrigger")) 
 		{
-            disableAnimations = true;
+			disableAnimations = true;
 			StartCoroutine(DamageAnimation());
 		}
 
 	}
 
-	void OnCollidsonEnter( Collider collider)
-	{
-        
-		if (collider.CompareTag ("Level")) 
-		{
-			landed = true;
-            if (Input.GetKey(KeyCode.A))
-            {
-                playerAnimator.SetInteger("State", 1);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                playerAnimator.SetInteger("State", 1);
-            }
-        }
-						
-	}
-
     IEnumerator DamageAnimation()
     {
         while (disableAnimations)
-        {
-            playerAnimator.SetInteger("State", 3);
+		{
+			playerAnimator.SetBool ("Damage", true);
             yield return new WaitForSeconds(1);
-            playerAnimator.SetInteger("State", 0);
+			playerAnimator.SetBool ("Damage", false);
             yield return new WaitForSeconds(1);
-            disableAnimations = false;
+			disableAnimations = false;
+
+
         }
     }
 }

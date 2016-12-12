@@ -23,7 +23,7 @@ public class WolfControll : MonoBehaviour
         wolfPos.z = 0;
         wolfPos.y -= gravity;
         wolfPos.x = speed;
-		speed = Random.Range (20, 40);
+		speed = Random.Range (25, 50);
         wolfCC.Move(wolfPos * Time.deltaTime);
     }
     
