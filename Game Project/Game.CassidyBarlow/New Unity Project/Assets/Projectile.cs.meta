@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9bf9a19810e82964abbc5ffa0012ceed
+timeCreated: 1461282199
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - player: {instanceID: 0}
+  - ememyDeath: {fileID: 190402, guid: af7a4b8fa86cbac4fb164edfb539d695, type: 2}
+  - projectileParticle: {fileID: 126662, guid: 0d7bc23423ddedc439d9b05d73a92dbc, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
