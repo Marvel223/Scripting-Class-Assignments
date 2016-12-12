@@ -19,7 +19,7 @@ public class CloneWolf : MonoBehaviour
         {
             i = Random.Range(0, spawnpoints.Length - 1);
             Instantiate(wolf, spawnpoints[i].position, Quaternion.identity);
-            yield return new WaitForSeconds(wolfSpawnFrequeny = Random.Range(10, 20));
+            yield return new WaitForSeconds(wolfSpawnFrequeny = Random.Range(15, 40));
         }
     }
     
