@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
+
 public class StarControl : MonoBehaviour 
 {
 	public int forceTime = 10;
@@ -14,18 +15,25 @@ public class StarControl : MonoBehaviour
 	private Vector3 torqueVector;
     
 	private Animator starAnimator;
-
-
+    public Renderer rend;
+    public Behaviour halo;
+    public ParticleSystem systemParticles;
+    public TrailRenderer starTail;
+    public Collider starTrig;
+    
+   
 
     
     
     
 	void Start()
 	{
+        rend = GetComponent<Renderer>();
 		starAnimator = GetComponent<Animator> (); 
         rigid = GetComponent<Rigidbody>();
 		StartCoroutine (RunRandomForce ());
         print ("Star has been Created");
+      
 
         
 
@@ -56,24 +64,26 @@ public class StarControl : MonoBehaviour
 		StartCoroutine (DestroyAfterLanding ());
 			//Destroy(gameObject, endTime);
 	}
-    
+
     void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
-            Destroy(gameObject);
-         
-            print ("star has been destroyed");
+
+            rend.enabled = false;
             ScoreManager.scoreCount += 1;
-            
-        }
+            halo.enabled = false;
+            systemParticles.enableEmission = false;
+            starTail.enabled = false;
+            Destroy(starTrig);
+           
 
 
-			
+}
+  
 
     }
-
-
+    
 	IEnumerator DestroyAfterLanding()
 	{
 		yield return new WaitForSeconds (2);

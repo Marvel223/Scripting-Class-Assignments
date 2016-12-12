@@ -59,14 +59,26 @@ public class PlayerAnimation : PlayerMovement
 		{
 			playerAnimator.SetInteger("State", 2);
 		}
-			
+        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            playerAnimator.SetInteger("State", 1);
+        }
+        if (Input.GetKeyUp(KeyCode.A) && Input.GetKeyDown(KeyCode.D))
+        {
+            playerAnimator.SetInteger("State", 1);
+        }
+        if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyUp(KeyCode.D))
+        {
+            playerAnimator.SetInteger("State", 1);
+        }
+
     }
 
 	void OnTriggerEnter (Collider collider)
 	{
 		if (collider.CompareTag ("ThrowBackTrigger")) 
 		{
-			landed = false;
+            disableAnimations = true;
 			StartCoroutine(DamageAnimation());
 		}
 
@@ -74,21 +86,33 @@ public class PlayerAnimation : PlayerMovement
 
 	void OnCollidsonEnter( Collider collider)
 	{
+        
 		if (collider.CompareTag ("Level")) 
 		{
 			landed = true;
-		}
+            if (Input.GetKey(KeyCode.A))
+            {
+                playerAnimator.SetInteger("State", 1);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                playerAnimator.SetInteger("State", 1);
+            }
+        }
 						
 	}
 
-	IEnumerator DamageAnimation()
-	{
-		//disableAnimations = true;
-		playerAnimator.PlayInFixedTime("Damage");
-
-		yield return new WaitForSeconds (2);
-		//disableAnimations = false;
-	}
+    IEnumerator DamageAnimation()
+    {
+        while (disableAnimations)
+        {
+            playerAnimator.SetInteger("State", 3);
+            yield return new WaitForSeconds(1);
+            playerAnimator.SetInteger("State", 0);
+            yield return new WaitForSeconds(1);
+            disableAnimations = false;
+        }
+    }
 }
 
 

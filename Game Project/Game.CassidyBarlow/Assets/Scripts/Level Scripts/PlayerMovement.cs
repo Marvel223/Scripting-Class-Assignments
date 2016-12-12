@@ -16,10 +16,13 @@ public class PlayerMovement : MonoBehaviour{
     public int jumpCount = 0;
     public int jumpCountMax = 2;
 
+    public ParticleSystem systemParticles;
     //SLIDING VARS
 
 
-	public bool enemyHit;
+
+
+    public bool enemyHit;
     /*public int slideDuration = 20;
     public float slideTime = 0.01f;
 
@@ -52,6 +55,7 @@ public class PlayerMovement : MonoBehaviour{
         //THIS FINDS THE CHARACTER COMPONENT, CALLS CHARACTER CONTOLLER ON OBJECT
         myCC = GetComponent<CharacterController>();
 		enemyHit = false;
+        systemParticles.enableEmission = false;
 
 		
     }
@@ -95,15 +99,16 @@ public class PlayerMovement : MonoBehaviour{
 
 
 
-    void OnTriggerEnter (Collider collider)
+    void OnTriggerEnter(Collider collider)
     {
-		if (collider.CompareTag ("ThrowBackTrigger")) {
-			tempPos.y = jumpSpeed + jumpSpeed * 0.5f;
-			ScoreManager.scoreCount -= 5;
-			enemyHit = true;
-			StartCoroutine(DisablePlayerInput()); 
-		}
-	
+        if (collider.CompareTag("ThrowBackTrigger"))
+        {
+            ScoreManager.scoreCount -= 5;
+            enemyHit = true;
+
+           
+            StartCoroutine(DisablePlayerInput());
+        }
     }
 
 
@@ -111,9 +116,10 @@ public class PlayerMovement : MonoBehaviour{
 	{
 		while(enemyHit)
 		{
+            systemParticles.enableEmission = true;
 			yield return new WaitForSeconds (2);
 			enemyHit = false;
-			
+            systemParticles.enableEmission = false;
 	}
 
 }

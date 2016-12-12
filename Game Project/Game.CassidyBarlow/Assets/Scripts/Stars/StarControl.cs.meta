@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 1a49dacbef56a4982b1b99320e58f785
-timeCreated: 1477532857
+timeCreated: 1481518123
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
+  defaultReferences:
+  - collectionSound: {fileID: 8300000, guid: 0f43e4cd828ef6e4a8f900bc001f52e4, type: 3}
+  executionOrder: 330
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
