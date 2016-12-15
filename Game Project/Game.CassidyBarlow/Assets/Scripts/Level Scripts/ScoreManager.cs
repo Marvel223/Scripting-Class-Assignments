@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
 	
    void Start ()
     {
+        
         scoreCount = 0;
 	}
 	

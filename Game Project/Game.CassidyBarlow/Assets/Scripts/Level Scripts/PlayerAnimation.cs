@@ -60,11 +60,15 @@ public class PlayerAnimation : PlayerMovement
 		{
 			playerAnimator.SetBool("Jump", false);
 		}
-		if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)&& !disableAnimations)
+		if(Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.D)&& !disableAnimations)
         {
             playerAnimator.SetFloat("Speed", 2);
         }
-		if (Input.GetKeyUp(KeyCode.A) && Input.GetKeyDown(KeyCode.D)&& !disableAnimations)
+        if (Input.GetKeyUp(KeyCode.A) && Input.GetKeyUp(KeyCode.D) && !disableAnimations)
+        {
+            playerAnimator.SetFloat("Speed", 2);
+        }
+            if (Input.GetKeyUp(KeyCode.A) && Input.GetKeyDown(KeyCode.D)&& !disableAnimations)
         {
             playerAnimator.SetFloat("Speed", 2);
         }
@@ -72,6 +76,7 @@ public class PlayerAnimation : PlayerMovement
         {
             playerAnimator.SetFloat("Speed", 2);
         }
+      
 
     }
 
