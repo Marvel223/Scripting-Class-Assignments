@@ -12,6 +12,7 @@ public class MenuScript : MonoBehaviour
     public Button startText;
     public Button exitText;
     public Canvas timerMenu;
+
     
 
    
@@ -49,9 +50,12 @@ public class MenuScript : MonoBehaviour
         pauseText = pauseText.GetComponent<Button>();
         resumeText = resumeText.GetComponent<Button>();
         mainMenuText = mainMenuText.GetComponent<Button>();
-        
+	
 
     }
+
+
+
 
     public void PausePress()
     {
@@ -166,6 +170,7 @@ public class MenuScript : MonoBehaviour
         startMenu.enabled = true;
         startText.enabled = true;
         exitText.enabled = true;
+
     }
 
     public void StartLevel()
